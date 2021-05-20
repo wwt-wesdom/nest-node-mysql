@@ -20,7 +20,7 @@ export interface ResData {
  */
 export function createResData(
   result = null,
-  code = '0',
+  code = '200',
   message = 'success',
   success = true,
   other = {},

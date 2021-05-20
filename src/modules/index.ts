@@ -1,7 +1,4 @@
 import TestModule from './test';
-// import CatsModule from './cats/cats.module';
+import StudentsModule from './students';
 
-export default [
-  TestModule,
-  // CatsModule,
-];
+export default [TestModule, StudentsModule];

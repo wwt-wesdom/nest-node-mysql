@@ -7,14 +7,15 @@ import * as mineType from 'mime-types';
 @Injectable()
 export class TestServer {
   public async getHello() {
-    return createResData('hello world', '0', '', true);
+    return createResData('hello world');
   }
+
   public async testPost(data) {
-    return createResData(data, '0', '', true);
+    return createResData(data);
   }
+
   public async readFile() {
     const filePath = path.resolve('src/images');
-    // tslint:disable-next-line:no-unused-expression
     const files = await new Promise((resolve, reject) => {
       fs.readdir(filePath, (error, file) => {
         if (error) {
@@ -30,9 +31,8 @@ export class TestServer {
             });
           }
           file = file.map((item) => {
-            const datas = fs.readFileSync(filePath + '/' + item);
-            // tslint:disable-next-line:no-shadowed-variable
-            const data = new Buffer(datas).toString('base64');
+            const dataS = fs.readFileSync(filePath + '/' + item);
+            const data = new Buffer(dataS).toString('base64');
             const base64 =
               'data:' +
               mineType.lookup(filePath + '/' + item) +
@@ -48,6 +48,6 @@ export class TestServer {
         }
       });
     });
-    return createResData({ data: files }, '0', '', true);
+    return createResData(files);
   }
 }
